@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+  # user sign up
   def create
     user = User.create(user_params)
     if user.valid?
@@ -13,3 +15,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :password, :email)
   end
 end
+
+
