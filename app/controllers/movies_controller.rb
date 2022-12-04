@@ -16,7 +16,11 @@ class MoviesController < ApplicationController
 
   def create
     movie = Movie.create(movie_params)
-    render json: movie, status: :created
+    if movie.valid?
+      render json: movie, status: :created
+    else
+      render json: movie.errors.full_messages, status: :unprocessable_entity
+    end
   end
 
   private
