@@ -1,3 +1,7 @@
+Movie.destroy_all
+Users.destroy_all
+
+
 Movie.create!([
   {
     title: "The Godfather",

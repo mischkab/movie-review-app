@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
   def index
     movies = Movie.all
@@ -15,15 +16,15 @@ class MoviesController < ApplicationController
   end
 
   def create
-    movie = Movie.create(movie_params)
-    if movie.valid?
-      render json: movie, status: :created
-    else
-      render json: movie.errors.full_messages, status: :unprocessable_entity
-    end
+    movie = Movie.create!(movie_params)
+    render json: movie, status: :created
   end
 
   private
+
+  def render_unprocessable_entity(invalid)
+    render json: {error: invalid.record.errors}, status: :unprocessable_entity
+  end
 
   def movie_params
     params.permit(:title, :overview, :director)
