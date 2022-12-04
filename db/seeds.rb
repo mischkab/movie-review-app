@@ -1,7 +1,3 @@
-Movie.destroy_all
-Users.destroy_all
-
-
 Movie.create!([
   {
     title: "The Godfather",
@@ -24,3 +20,5 @@ Movie.create!([
     director: "Damien Chazelle"
   }
 ])
+
+10.times{User.create(username: Faker::Internet.username(specifier: 5..10), password: Faker::Internet.password(min_length: 8), email: Faker::Internet.email)}
