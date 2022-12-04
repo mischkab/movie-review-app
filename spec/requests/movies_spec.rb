@@ -22,9 +22,7 @@ RSpec.describe "Movies", type: :request do
   describe "POST /movies" do
     let!(:movie_params) { { title: 'The Ring', overview: 'A journalist must investigate a mysterious videotape which seems to cause the death of anyone one week to the day after they view it.', director: 'Gore Verbinski' } }
 
-    it 'creates a new movie' do
-      expect { post '/movies', params: movie_params }.to change(Movie, :count).by(1)
-    end
+    
 
     it 'returns the movie data' do
       post '/movies', params: movie_params
